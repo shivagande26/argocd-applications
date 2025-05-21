@@ -1,0 +1,18 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: mysql
+  namespace: argocd
+spec:
+  project: default # ArgoCD project
+  source:
+    repoURL: https://github.com/shivagande26/Kubernetes.git # Replace with your Git repo URL
+    targetRevision: main # Git branch or commit (e.g., main, develop)
+    path: mysql # Path to the application resources in the repo
+  destination:
+    server: https://kubernetes.default.svc # In-cluster Kubernetes API
+    namespace: default # Namespace where app1 resources will be deployed
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true

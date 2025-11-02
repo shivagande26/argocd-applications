@@ -1,0 +1,18 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: datastore-fe
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/shivagande26/Kubernetes.git
+    targetRevision: main
+    path: datastore-fe
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: default
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
